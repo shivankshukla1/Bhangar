@@ -23,7 +23,7 @@ export const UserDetails = () => {
   useEffect(() => {
       try {
 
-          fetch("http://localhost:5000/userData", {
+          fetch("https://bhangaar.onrender.com/userData", {
             method:"POST",
             crossDomain:true, 
             headers:{
@@ -58,7 +58,7 @@ export const UserDetails = () => {
   const delete_product = (e) => () =>{
     if (window.confirm('Are you sure you want to delete the product, it cannot be reverted?')) {
       try {
-        fetch("http://localhost:5000/delete_product", {
+        fetch("hhttps://bhangaar.onrender.com/delete_product", {
           method:"POST",
           crossDomain:true, 
           headers:{

@@ -24,7 +24,7 @@ export const ProductDetails = () => {
 
     useEffect(() => {
         try {
-            fetch("http://localhost:5000/product_details", {
+            fetch("https://bhangaar.onrender.com/product_details", {
             method:"POST",
             crossDomain:true, 
             headers:{

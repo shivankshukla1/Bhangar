@@ -25,7 +25,7 @@ export const Upload = (props) => {
       const token = window.localStorage.getItem("token");
       
       try {
-        fetch("http://localhost:5000/checkLogged", {
+        fetch("https://bhangaar.onrender.com/checkLogged", {
           method:"POST",
           crossDomain:true, 
           headers:{
@@ -61,7 +61,7 @@ export const Upload = (props) => {
       window.location.href = "./Login";
     }else{
     try {
-      fetch("http://localhost:5000/upload", {
+      fetch("https://bhangaar.onrender.com/upload", {
         method:"POST",
         crossDomain:true, 
         headers:{

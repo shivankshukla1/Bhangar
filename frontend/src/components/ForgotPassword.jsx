@@ -12,7 +12,7 @@ export const ForgotPassword = (props) => {
     console.log(email);
     
     try {
-      fetch("http://localhost:5000/forgotpassword", {
+      fetch("https://bhangaar.onrender.com/forgotpassword", {
         method:"POST",
         crossDomain:true, 
         headers:{

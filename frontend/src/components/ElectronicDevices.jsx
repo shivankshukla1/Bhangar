@@ -8,7 +8,7 @@ export const Electronic_devices = () => {
     useEffect(() => {
         console.log("here");
         try {
-            fetch("http://localhost:5000/category_products", {
+            fetch("https://bhangaar.onrender.com/category_products", {
               method:"POST",
               crossDomain:true, 
               headers:{

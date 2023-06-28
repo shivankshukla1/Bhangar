@@ -13,7 +13,7 @@ export const Home = () => {
             navigate("/Home");
         }
         try {
-            fetch("http://localhost:5000/products", {
+            fetch("https://bhangaar.onrender.com/products", {
               method:"POST",
               crossDomain:true, 
               headers:{

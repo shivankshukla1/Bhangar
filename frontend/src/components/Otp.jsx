@@ -18,7 +18,7 @@ export const Otp = (props) => {
 
     
     try {
-      fetch("http://localhost:5000/otp_verification", {
+      fetch("https://bhangaar.onrender.com/otp_verification", {
         method:"POST",
         crossDomain:true, 
         headers:{

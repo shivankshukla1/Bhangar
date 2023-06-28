@@ -15,7 +15,7 @@ export const Register = (props) => {
       alert("Fill the missing values");
     }else{
     try {
-      fetch("http://localhost:5000/register", {
+      fetch("hhttps://bhangaar.onrender.com/register", {
         method:"POST",
         crossDomain:true, 
         headers:{

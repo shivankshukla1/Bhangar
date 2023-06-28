@@ -8,7 +8,7 @@ export const StationaryAndBooks = () => {
     useEffect(() => {
         console.log("here");
         try {
-            fetch("http://localhost:5000/category_products", {
+            fetch("hhttps://bhangaar.onrender.com/category_products", {
               method:"POST",
               crossDomain:true, 
               headers:{
