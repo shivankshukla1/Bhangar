@@ -8,7 +8,7 @@ export const StationaryAndBooks = () => {
     useEffect(() => {
         console.log("here");
         try {
-            fetch("hhttps://bhangaar.onrender.com/category_products", {
+            fetch("https://bhangaar.onrender.com/category_products", {
               method:"POST",
               crossDomain:true, 
               headers:{

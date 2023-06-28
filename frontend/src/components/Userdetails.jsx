@@ -58,7 +58,7 @@ export const UserDetails = () => {
   const delete_product = (e) => () =>{
     if (window.confirm('Are you sure you want to delete the product, it cannot be reverted?')) {
       try {
-        fetch("hhttps://bhangaar.onrender.com/delete_product", {
+        fetch("https://bhangaar.onrender.com/delete_product", {
           method:"POST",
           crossDomain:true, 
           headers:{
