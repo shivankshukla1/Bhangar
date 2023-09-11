@@ -48,7 +48,7 @@ export const SportsEquipment = () => {
 
             <a href="./Home" class="flex items-center">
                 <img src={logo1} class="h-8 mr-3" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Bhangar</span>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">ReSold</span>
             </a>
 
             <button data-collapse-toggle="navbar-multi-level" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-multi-level" aria-expanded="false">
@@ -201,7 +201,7 @@ export const SportsEquipment = () => {
   
   <div class="p-4 text-center bg-white dark:bg-gray-900">
     © 2023 Copyright :
-    Bhangar
+    ReSold
   </div>
 </footer>
 
