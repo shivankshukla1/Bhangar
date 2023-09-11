@@ -17,7 +17,7 @@ export const UserDetails = () => {
       navigate(`/ProductDetails/${e}`);
   }
   function Log_in(){
-    window.location.href = "/Login";
+    navigate("/Login");
   }
 
   useEffect(() => {
@@ -40,10 +40,10 @@ export const UserDetails = () => {
                 data = []
               setproducts(data);
                 alert("Please Log in first");                
-                window.location.href = "/Login"
+                navigate("/Login")
               }else if(data == []){
                 alert("You have no products");
-                window.location.href = "/Home"
+                navigate("/Home")
               }
               console.log(data);
               setproducts(data);
@@ -74,7 +74,7 @@ export const UserDetails = () => {
         .then((data) =>{
             if(data.status == "deleted"){
               alert("Successfully deleted");
-              window.location.href = "./user";
+              navigate("./User");
             }else{
               alert("Not able to delete");
             }
@@ -90,7 +90,7 @@ export const UserDetails = () => {
   }
 
   const edit = (product_id) => () =>{
-    window.location.href = `/Edit/${product_id}`;
+    navigate(`/Edit/${product_id}`)
   }
 
     return(

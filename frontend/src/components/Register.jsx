@@ -4,7 +4,7 @@ import logo1 from "../media/logo1.png";
 
 
 export const Register = (props) => {
-  
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [fullName, setfullName] = useState("")
@@ -32,8 +32,10 @@ export const Register = (props) => {
         .then((data) =>{
           if(data.status == "UserExists"){
             alert("Email ID is already registered");
+            navigate("./Login")
           }else if(data.status == "Ok"){
-            alert("You have successfully registered");
+            alert("You have successfully registered, verify your Email.");
+            navigate("../Home")
           }else{
             alert("User Register but email not verified");
           }

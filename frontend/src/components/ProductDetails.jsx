@@ -19,7 +19,7 @@ export const ProductDetails = () => {
         navigate(`/ProductDetails/${e}`);
     }
     function Log_in(){
-      window.location.href = "/Login";
+      navigate("/Login");
     }
 
     useEffect(() => {

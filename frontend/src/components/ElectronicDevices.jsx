@@ -34,7 +34,7 @@ export const Electronic_devices = () => {
     
     const navigate = useNavigate();
     function Log_in(){
-        window.location.href = "/Login";
+        navigate("/Login");
     }
     function Log_out() {
         window.localStorage.clear();

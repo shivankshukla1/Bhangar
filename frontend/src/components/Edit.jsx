@@ -66,7 +66,7 @@ export const Edit = (props) => {
             .then((data) =>{
                 if(data.status == "deleted"){
                   alert("Successfully deleted");
-                  window.location.href = "./user";
+                  navigate("./User");
                 }else{
                   alert("Not able to delete");
                 }
@@ -103,7 +103,7 @@ export const Edit = (props) => {
               if(data.status != "loggedIn"){
                 window.localStorage.clear();
                 alert("Please Log In to upload your product");
-                window.location.href = "../Login";
+                navigate("../Login");
               }else{
     
               }
@@ -118,7 +118,7 @@ export const Edit = (props) => {
       const email = window.localStorage.getItem("email");
       if(!loggedIn){
         alert("please log in to upload your product");
-        window.location.href = "../Login";
+        navigate("../Login");
       }else{
       try {
         fetch("https://bhangaar.onrender.com/edit", {
@@ -145,7 +145,7 @@ export const Edit = (props) => {
             if(data.status == "Uploaded"){
 
               alert("Uploaded your product.");
-              window.location.href = "../User";
+              navigate("../User");
             }else{
               console.log("we could not upload");
             }

@@ -39,7 +39,7 @@ export const Upload = (props) => {
             if(data.status != "loggedIn"){
               window.localStorage.clear();
               alert("Please Log In to upload your product");
-              window.location.href = "./Login";
+              navigate("./Login");
             }else{
   
             }
@@ -56,7 +56,7 @@ export const Upload = (props) => {
     const email = window.localStorage.getItem("email");
     if(!loggedIn){
       alert("please log in to upload your product");
-      window.location.href = "./Login";
+      navigate("./Login");
     }else{
     try {
       fetch("https://bhangaar.onrender.com/upload", {
@@ -81,7 +81,7 @@ export const Upload = (props) => {
           console.log(data, "user");
           if(data.status == "Uploaded"){
             alert("Uploaded your product");
-            window.location.href = "./";
+            navigate("./");
           }else{
             console.log("we could not upload");
           }

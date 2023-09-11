@@ -46,7 +46,7 @@ export const Home = () => {
     }
 
     function Log_in(){
-      window.location.href = "/Login";
+      navigate("/Login");
     }
 
     return (

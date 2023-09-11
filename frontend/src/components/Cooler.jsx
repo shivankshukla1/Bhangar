@@ -6,7 +6,6 @@ export const Cooler = () => {
     const [products, setproducts] = useState("");
     const loggedIn = window.localStorage.getItem("loggedIn");
     useEffect(() => {
-        console.log("here");
         try {
             fetch("https://bhangaar.onrender.com/category_products", {
               method:"POST",
@@ -34,7 +33,7 @@ export const Cooler = () => {
     
     const navigate = useNavigate();
     function Log_in(){
-        window.location.href = "/Login";
+        navigate("/Login");
     }
     function Log_out() {
         window.localStorage.clear();

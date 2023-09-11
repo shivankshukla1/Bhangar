@@ -20,7 +20,7 @@ export const EmailVerification = () => {
       navigate(`/ProductDetails/${e}`);
   }
   function Log_in(){
-    window.location.href = "/Login";
+    navigate("/Login");
   }
 
   useEffect(() => {
@@ -43,9 +43,9 @@ export const EmailVerification = () => {
             }else if(data.staus == "UserExists"){
               alert("The email id is already verifed.");
             }else{
-              alert(data.status);
+              // alert(data.status);
             }
-            window.location.href = "/Login";
+            navigate("/Login");
           });
       } catch (error) {      
           console.log("we got an error");
