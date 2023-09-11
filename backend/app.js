@@ -113,8 +113,8 @@ app.post("/register", async (req, res) => {
             password: encrypted_pass,
             verificationToken: emailVerificationToken // Add this field
         });
-
-      const verificationLink = `http://localhost:3000/EmailVerification/${emailVerificationToken}`;
+      
+      const verificationLink = `https://resold.netlify.app/EmailVerification/${emailVerificationToken}`;
       const mailOptions = {
           from: 'youremail@gmail.com',
           to: email,

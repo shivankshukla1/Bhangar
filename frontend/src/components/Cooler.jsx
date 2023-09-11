@@ -209,4 +209,3 @@ export const Cooler = () => {
     )
 }
 
-//COMMENT FOR TEST
