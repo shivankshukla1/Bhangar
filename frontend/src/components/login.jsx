@@ -12,7 +12,7 @@ export const Login = (props) => {
 
     e.preventDefault();
     try {
-      fetch("https://bhangaar.onrender.com/login", {
+      fetch("http://localhost:5000/login", {
         method:"POST",
         crossDomain:true, 
         headers:{

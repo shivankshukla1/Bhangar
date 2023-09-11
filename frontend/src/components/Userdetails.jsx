@@ -89,6 +89,10 @@ export const UserDetails = () => {
     }
   }
 
+  const edit = (product_id) => () =>{
+    window.location.href = `/Edit/${product_id}`;
+  }
+
     return(
       <div class="bg-blue-100">
       <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
@@ -168,10 +172,16 @@ export const UserDetails = () => {
                    <span class="text-left text-sm md:text-lg font-light text-gray-900 dark:text-gray">{product.description}</span>
                </div>
                </button>
+               <div className='flex mx-auto'>
+
                   <div className='bg-purple-300  mx-auto'>
                     <button type="button" onClick ={delete_product(product.product_id)} class="mx-auto text-black bg-yellow-300 hover:bg-yellow-300 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm md:text-md px-5 py-2.5 mr-2 mb-2 dark:bg-yellow-300 dark:hover:bg-yellow-300 focus:outline-none dark:focus:ring-yellow-300">Delete Product</button>
                   </div>
+                  <div className='bg-purple-300  mx-auto'>
+                    <button type="button" onClick ={edit(product.product_id)} class="mx-auto text-white bg-purple-600 hover:bg-purple-600 focus:ring-4 focus:ring-purple-600 font-medium rounded-lg text-sm md:text-md px-5 py-2.5 mr-2 mb-2 dark:bg-purple-600 dark:hover:bg-purple-600 focus:outline-none dark:focus:ring-purple-600">Edit  </button>
+                  </div>
 
+               </div>
                
 
           </div>

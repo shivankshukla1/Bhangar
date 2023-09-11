@@ -17,6 +17,8 @@ import { Electronic_devices } from "./components/ElectronicDevices";
 import { ProductDetails } from "./components/ProductDetails";
 import { SportsEquipment } from "./components/SportsEquipment";
 import { StationaryAndBooks } from "./components/StationaryAndBooks";
+import { EmailVerification } from "./components/EmailVerification";
+import { Edit } from "./components/Edit";
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
   console.log("islogged is ", isLoggedIn);
@@ -37,8 +39,9 @@ function App() {
         <Route exact path="/Electronic_devices" element={<Electronic_devices />}></Route>
         <Route exact path="/StationaryAndBooks" element={<StationaryAndBooks />}></Route>
         <Route exact path="/SportsEquipment" element={<SportsEquipment />}></Route>
-
         <Route exact path="/ProductDetails/:product_id" element={<ProductDetails />}></Route>
+        <Route exact path="/EmailVerification/:verificationToken" element={<EmailVerification />}></Route>
+        <Route exact path="/Edit/:product_id" element={<Edit/>}></Route>
       </Routes>
     </BrowserRouter>
   )

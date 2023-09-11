@@ -8,8 +8,7 @@ export const Otp = (props) => {
   const [OTP, setOTP] = useState("");
   const [password, setPassword] = useState("")
   const email = window.localStorage.getItem("email");
-  const etoken = window.localStorage.getItem("etoken");
-  // console.log(etoken);
+
   const setvalues = (e) =>{
     e.preventDefault();
     if(password == ""){
@@ -18,7 +17,7 @@ export const Otp = (props) => {
 
     
     try {
-      fetch("https://bhangaar.onrender.com/otp_verification", {
+      fetch("http://localhost:5000/otp_verification", {
         method:"POST",
         crossDomain:true, 
         headers:{
@@ -30,18 +29,17 @@ export const Otp = (props) => {
           OTP:OTP,
           email:email,
           password:password,
-          etoken:etoken
         })
       }).then((res) => res.json())
         .then((data) =>{
-  
+            console.log(data.status);
             if(data.status == "verified"){
               alert("The password has been updated");
               window.location.href="./login";
             }else{
               alert("You Entered wrong OTP");
               window.location.href="./ForgotPassword";
-              window.localStorage.clear();
+              // window.localStorage.clear();
             }
              
         });

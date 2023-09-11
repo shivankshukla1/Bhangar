@@ -1,60 +1,63 @@
+import { useNavigate, useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from "react-router-dom";
 import logo1 from "../media/logo1.png";
 
+export const EmailVerification = () => {
+  console.log("here");
+  const [products, setproducts] = useState("");
+  const params = useParams();
+  const navigate = useNavigate();
+  const loggedIn = window.localStorage.getItem("loggedIn");
+  console.log(params.verificationToken);
 
-export const Home = () => {
-    const [products, setproducts] = useState("");
-    const loggedIn = window.localStorage.getItem("loggedIn");
-    useEffect(() => {
-        console.log(loggedIn);
-        if(loggedIn != "true"){
-            console.log("we are logged out");
-            navigate("/Home");
-        }
-        try {
-            fetch("https://bhangaar.onrender.com/products", {
-              method:"POST",
-              crossDomain:true, 
-              headers:{
-                "Content-Type":"application/json",
-                Accept:"application/json",
-                "Access-Control-Allow-Origin":"*",
-              },
-              body:JSON.stringify({
+  function Log_out() {
+    window.localStorage.clear();
+    window.localStorage.setItem('loggedIn', false);
+    navigate("/");
+  }
 
-            })
-            }).then((res) => res.json())
-            .then((data) =>{
-                setproducts(data);
-            });
-          } catch (error) {      
-            console.log("we got an error");
-          }
-    }, []);
+  const details = (e) => () =>{
+      navigate(`/ProductDetails/${e}`);
+  }
+  function Log_in(){
+    window.location.href = "/Login";
+  }
 
+  useEffect(() => {
+      try {
+          fetch("http://localhost:5000/EmailVerification", {
+          method:"POST",
+          crossDomain:true, 
+          headers:{
+              "Content-Type":"application/json",
+              Accept:"application/json",
+              "Access-Control-Allow-Origin":"*",
+          },
+          body:JSON.stringify({
+            verificationToken:params.verificationToken,
+          })
+          }).then((res) => res.json())
+          .then((data) =>{
+            if(data.staus == 'ok'){
+              alert("Email verified successfully");
+            }else if(data.staus == "UserExists"){
+              alert("The email id is already verifed.");
+            }else{
+              alert(data.status);
+            }
+            window.location.href = "/Login";
+          });
+      } catch (error) {      
+          console.log("we got an error");
+      }
+  }, []);
 
-    const navigate = useNavigate();
-    function Log_out() {
-        window.localStorage.clear();
-        window.localStorage.setItem('loggedIn', false);
-        navigate("/");
-    }
-
-    const details = (e) => () =>{
-        navigate(`/ProductDetails/${e}`);
-    }
-
-    function Log_in(){
-      window.location.href = "/Login";
-    }
-
-    return (
-       <div class="bg-blue-100">
+  return (
+    <div class="bg-blue-100">
         <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
-            <a href="./Home" class="flex items-center">
+            <a href="../Home" class="flex items-center">
                 <img src={logo1} class="h-8 mr-3" alt="Flowbite Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Bhangar</span>
             </a>
@@ -67,7 +70,7 @@ export const Home = () => {
             <div class="hidden w-full md:block md:w-auto text-center" id="navbar-multi-level">
             <ul class="items-center flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-                <a href="./Home" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
+                <a href="../Home" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Home</a>
             </li>
             <li>
                 <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Categories<svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
@@ -93,10 +96,10 @@ export const Home = () => {
                 </div>
             </li>
             <li>
-                <a href="./Upload" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sell Your Product</a>
+                <a href="/Upload" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sell Your Product</a>
             </li>
             <li>
-                <a href="./User" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Your Products</a>
+                <a href="/User" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Your Products</a>
             </li>
             <li>
             <div>
@@ -112,27 +115,25 @@ export const Home = () => {
 
         <div class="min-h-screen pt-28 container mx-auto p-6 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-screen-xl items-center justify-between mx-auto p-4">
         {
-
-            products && products.map((product) => (
+          products && products.map((product) => (
             <div>
             <div class="col-span-1 flex flex-col bg-white border-2 border-purple-300 text-left">
             <button className="" onClick={details(product.product_id)}>
-                 <div className='w-full p-2'>
-                     <img class="aspect-square w-full rounded-t-lg" src={product.image} alt="product image" />
-                 </div>
-                 <div class="bg-purple-300 py-3 px-5 text-left pb-5 w-full aspect-[2/1] md:aspect-[5/2] overflow-hidden truncate ">
+                <div className='w-full p-2'>
+                    <img class="aspect-square w-full rounded-t-lg" src={product.image} alt="product image" />
+                </div>
+                <div class="bg-purple-300 py-3 px-5 text-left pb-5 w-full aspect-[2/1] md:aspect-[5/2] overflow-hidden truncate ">
                     <div class="flex  justify-between">
                         <span class="text-xl md:text-3xl font-bold text-gray-900 dark:text-gray">₹{product.price}</span>
                     </div>
-                     <h5 class="text-left text-md md:text-xl font-semibold tracking-tight text-gray-900 dark:text-gray">{product.title}</h5>
-                     <span class="text-left text-sm md:text-lg font-light text-gray-900 dark:text-gray">{product.description}</span>
-                 </div>
-                 </button>
+                    <h5 class="text-left text-md md:text-xl font-semibold tracking-tight text-gray-900 dark:text-gray">{product.title}</h5>
+                    <span class="text-left text-sm md:text-lg font-light text-gray-900 dark:text-gray">{product.description}</span>
+                </div>
+                </button>
             </div>
             </div>
             )
           )
-
         }
         
         </div>
@@ -210,11 +211,13 @@ export const Home = () => {
   
   <div class="p-4 text-center bg-white dark:bg-gray-900">
     © 2023 Copyright :
-    Bhangar
+    
+    <a class="text-white" href="./Home"
+      > Bhangar</a
+    >
   </div>
 </footer>
 
-        </div>     
-    )
+        </div> 
+  )
 }
-

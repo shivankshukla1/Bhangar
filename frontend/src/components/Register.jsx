@@ -15,7 +15,7 @@ export const Register = (props) => {
       alert("Fill the missing values");
     }else{
     try {
-      fetch("https://bhangaar.onrender.com/register", {
+      fetch("http://localhost:5000/register", {
         method:"POST",
         crossDomain:true, 
         headers:{
@@ -34,6 +34,8 @@ export const Register = (props) => {
             alert("Email ID is already registered");
           }else if(data.status == "Ok"){
             alert("You have successfully registered");
+          }else{
+            alert("User Register but email not verified");
           }
         });
     } catch (error) {

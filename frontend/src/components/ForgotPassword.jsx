@@ -12,7 +12,7 @@ export const ForgotPassword = (props) => {
     console.log(email);
     
     try {
-      fetch("https://bhangaar.onrender.com/forgotpassword", {
+      fetch("http://localhost:5000/forgotpassword", {
         method:"POST",
         crossDomain:true, 
         headers:{
@@ -20,6 +20,7 @@ export const ForgotPassword = (props) => {
           Accept:"application/json",
           "Access-Control-Allow-Origin":"*",
         },
+
         body:JSON.stringify({
           email:email
         })
@@ -28,12 +29,12 @@ export const ForgotPassword = (props) => {
             if(data.status == "Otp"){
               alert("Otp has been sent to your email");
             }else{
+              console.log(data.status);
               alert(data.status);
             }
 
             if(data.status == "Otp"){
               window.localStorage.setItem("email", data.email);
-              window.localStorage.setItem("etoken", data.etoken);
               window.location.href="./Otp";
             }
         });

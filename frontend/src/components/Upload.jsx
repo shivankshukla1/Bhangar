@@ -4,7 +4,6 @@ import { useForm, Controller } from 'react-hook-form';
 import logo1 from "../media/logo1.png";
 
 
-
 export const Upload = (props) => {
 
   const [title, settitle] = useState("")
@@ -14,8 +13,6 @@ export const Upload = (props) => {
   const [type, settype] = useState("")
   const [image, setimage] = useState("")
 
-
-
   const { register, handleSubmit } = useForm();
   const onSubmit = data => console.log(data);
   const loggedIn = window.localStorage.getItem("loggedIn");
@@ -23,7 +20,7 @@ export const Upload = (props) => {
   useEffect(() => { 
       console.log("here");
       const token = window.localStorage.getItem("token");
-      
+
       try {
         fetch("https://bhangaar.onrender.com/checkLogged", {
           method:"POST",
@@ -51,6 +48,7 @@ export const Upload = (props) => {
         console.log("we got an error");
       }
   }, []);
+
 
   const setvalues = (e) =>{
     e.preventDefault();
@@ -96,6 +94,7 @@ export const Upload = (props) => {
 
 
   const navigate = useNavigate();
+  
   function handleClick() {
     navigate("/login");
   }
@@ -158,6 +157,12 @@ export const Upload = (props) => {
 
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
                     <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="myfile" onChange={convertToBase64} name="myfile" type="file"/>
+                    {/* <FileBase64
+                        multiple={false}
+                        type={'image'}
+                        onDone={(file) => {setimage(file.base64) 
+                          console.log("image: ", image)}}
+                    /> */}
 
                     <div class="flex items-center justify-between">
                         <div class="flex items-start">
