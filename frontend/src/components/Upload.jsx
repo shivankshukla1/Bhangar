@@ -1,5 +1,5 @@
 import React, { useState, useEffect  } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useForm, Controller } from 'react-hook-form';
 import logo1 from "../media/logo1.png";
 
@@ -18,9 +18,7 @@ export const Upload = (props) => {
   const loggedIn = window.localStorage.getItem("loggedIn");
 
   useEffect(() => { 
-      console.log("here");
       const token = window.localStorage.getItem("token");
-
       try {
         fetch("https://bhangaar.onrender.com/checkLogged", {
           method:"POST",
@@ -39,7 +37,7 @@ export const Upload = (props) => {
             if(data.status != "loggedIn"){
               window.localStorage.clear();
               alert("Please Log In to upload your product");
-              navigate("./Login");
+              navigate("../Login");
             }else{
   
             }
@@ -52,11 +50,10 @@ export const Upload = (props) => {
 
   const setvalues = (e) =>{
     e.preventDefault();
-    console.log("we are submiting ");
     const email = window.localStorage.getItem("email");
     if(!loggedIn){
       alert("please log in to upload your product");
-      navigate("./Login");
+      navigate("../Login");
     }else{
     try {
       fetch("https://bhangaar.onrender.com/upload", {
@@ -81,7 +78,7 @@ export const Upload = (props) => {
           console.log(data, "user");
           if(data.status == "Uploaded"){
             alert("Uploaded your product");
-            navigate("./");
+            navigate("../User");
           }else{
             console.log("we could not upload");
           }
@@ -95,15 +92,11 @@ export const Upload = (props) => {
 
   const navigate = useNavigate();
   
-  function handleClick() {
-    navigate("/login");
-  }
 
   function convertToBase64(e){
     var reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
-      // console.log(reader.result);
       setimage(reader.result);
     };
     reader.onerror = error => {
@@ -114,10 +107,10 @@ export const Upload = (props) => {
   return (
     <section class="bg-gray-50 dark:bg-gray-900 py-16">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
-        <a href="./Home" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <Link to="../Home" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
             <img class="w-8 h-8 mr-2" src={logo1} alt="logo"/>
             ReSold
-        </a>
+        </Link>
   
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -157,13 +150,7 @@ export const Upload = (props) => {
 
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
                     <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="myfile" onChange={convertToBase64} name="myfile" type="file"/>
-                    {/* <FileBase64
-                        multiple={false}
-                        type={'image'}
-                        onDone={(file) => {setimage(file.base64) 
-                          console.log("image: ", image)}}
-                    /> */}
-
+                  
                     <div class="flex items-center justify-between">
                         <div class="flex items-start">
                         </div>

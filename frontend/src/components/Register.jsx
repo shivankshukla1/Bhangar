@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logo1 from "../media/logo1.png";
 
 
@@ -10,7 +10,6 @@ export const Register = (props) => {
   const [fullName, setfullName] = useState("")
   const setvalues = (e) =>{
     e.preventDefault();
-    console.log(email + password + fullName);
     if(email.length == 0 || password.length == 0 || fullName.length == 0){
       alert("Fill the missing values");
     }else{
@@ -32,7 +31,7 @@ export const Register = (props) => {
         .then((data) =>{
           if(data.status == "UserExists"){
             alert("Email ID is already registered");
-            navigate("./Login")
+            navigate("../Login")
           }else if(data.status == "Ok"){
             alert("You have successfully registered, verify your Email.");
             navigate("../Home")
@@ -46,18 +45,15 @@ export const Register = (props) => {
   }
   }
   const navigate = useNavigate();
-  function handleClick() {
-    navigate("/login");
-  }
-
+  
 
   return (
     <section class="bg-gray-50 dark:bg-gray-900">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
-        <a href="./Home" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+        <Link to="../Home" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
             <img class="w-8 h-8 mr-2" src={logo1} alt="logo"/>
             ReSold
-        </a>
+        </Link>
   
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -82,7 +78,7 @@ export const Register = (props) => {
                     </div>
                     <button type="submit" class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign up</button>
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                        Already have an account? <a href="./Login" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Sign in</a>
+                        Already have an account? <Link to="../Login" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Sign in</Link>
                     </p>
                 </form>
             </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect  } from 'react'
-import { useNavigate,useParams } from "react-router-dom";
+import { useNavigate,useParams, Link } from "react-router-dom";
 import { useForm, Controller } from 'react-hook-form';
 import logo1 from "../media/logo1.png";
 
@@ -41,7 +41,6 @@ export const Edit = (props) => {
                 setimage(data[0].image)
                 setdescription(data[0].description)
                 settype(data[0].type)
-                console.log("iamge is ", image);
             });
         } catch (error) {      
             console.log("we got an error");
@@ -65,8 +64,8 @@ export const Edit = (props) => {
             }).then((res) => res.json())
             .then((data) =>{
                 if(data.status == "deleted"){
-                  alert("Successfully deleted");
-                  navigate("./User");
+                  // alert("Successfully deleted");
+                  navigate("../User");
                 }else{
                   alert("Not able to delete");
                 }
@@ -82,7 +81,6 @@ export const Edit = (props) => {
       }
 
     useEffect(() => { 
-        console.log("here");
         const token = window.localStorage.getItem("token");
         getvalues();
         try {
@@ -105,7 +103,7 @@ export const Edit = (props) => {
                 alert("Please Log In to upload your product");
                 navigate("../Login");
               }else{
-    
+
               }
             });
         } catch (error) {
@@ -144,7 +142,7 @@ export const Edit = (props) => {
             console.log(data, "user");
             if(data.status == "Uploaded"){
 
-              alert("Uploaded your product.");
+              // alert("Uploaded your product.");
               navigate("../User");
             }else{
               console.log("we could not upload");
@@ -160,7 +158,6 @@ export const Edit = (props) => {
         var reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
         reader.onload = () => {
-          // console.log(reader.result);
           setimage(reader.result);
         };
         reader.onerror = error => {
@@ -171,18 +168,14 @@ export const Edit = (props) => {
   
     const navigate = useNavigate();
 
-    function handleClick() {
-      navigate("/login");
-    }
-  
-    
+
     return (
       <section class="bg-gray-50 dark:bg-gray-900 py-16">
       <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
-          <a href="./Home" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+          <Link to="../Home" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
               <img class="w-8 h-8 mr-2" src={logo1} alt="logo"/>
               ReSold
-          </a>
+          </Link>
     
           <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
               <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
